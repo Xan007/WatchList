@@ -4,15 +4,23 @@ import userService from "../services/userService.js"
 export const getUserWatchLists = async(req, res, next) => {
     //Usuario autentica
     const { user_id } = req.user
+    const { type } = req.query
 
-    res.redirect(`/user/${user_id}/watch_list`)
+    if (type)
+        res.redirect(`/user/${user_id}/watch_list/?type=${type}`)
+    else
+        res.redirect(`/user/${user_id}/watch_list/`)
 }
 
 export const getUserWatchListByName = async(req, res, next) => {
     const { user_id } = req.user
     const { list_name } = req.params
+    const { type } = req.query
 
-    res.redirect(`/users/${user_id}/watch_list/${list_name}`)
+    if (type)
+        res.redirect(`/users/${user_id}/watch_list/${list_name}/?type=${type}`)
+    else
+        res.redirect(`/users/${user_id}/watch_list/${list_name}`)
 }
 
 export const postContentToList = async(req, res, next) => {

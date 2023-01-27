@@ -10,6 +10,7 @@ import {
 const router = Router()
 
 //Redirect a /users/:user_id/watch_list
+//Query type = Movie/Series
 router.get("/", getUserWatchLists)
 
 //Redirect a /users/:user_id/watch_list/:list_name
