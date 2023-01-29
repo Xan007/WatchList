@@ -4,6 +4,7 @@ import cors from "cors"
 import morgan from "morgan"
 
 import mountRoutes from "./src/routes/index.js"
+import "./passportJWT.js"
 
 const host = config.get("server.host")
 const port = config.get("server.port")

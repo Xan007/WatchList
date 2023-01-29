@@ -8,6 +8,8 @@ import {
     postUser
 } from "../controllers/userController.js"
 
+import { authenticate, hasRole } from "passport";
+
 const router = Router()
 
 router.post("/", postUser)
@@ -24,6 +26,6 @@ router.get("/:user_id/watch_list", getWatchLists)
 //Type = movies/series
 router.get("/:user_id/watch_list/:list_name", getWatchListByName)
 
-router.delete("/:user_id", deleteUserById)
+router.delete("/:user_id", authenticate, hasRole("Admin"), deleteUserById)
 
 export default router
