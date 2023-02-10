@@ -8,7 +8,7 @@ import {
     postUser
 } from "../controllers/userController.js"
 
-import { authenticate, hasRole } from "passport";
+import { authenticate, hasRole } from "../middleware/auth.js";
 
 const router = Router()
 

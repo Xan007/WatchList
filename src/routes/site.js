@@ -11,14 +11,15 @@ const router = Router()
 
 router.post("/login", async (req, res, next) => {
     const { username, password } = req.body
-    const hashpassword = await bcryptjs.hash(password, 10)
 
     try {
-        const row_result = await db.query("SELECT user_id FROM users WHERE username = $1::VARCHAR AND password = $2::VARCHAR)", [username, hashpassword]).rows[0]
-        if (!row_result)
-            throw new Error("No user with the credentials given")
+        const user = await userService.findUserByUsername(username)
+        const { password: hash_user } = (await db.query("SELECT password FROM users WHERE user_id=$1", [user.user_id])).rows[0]
+        
+        if (!await bcryptjs.compare(password, hash_user))
+            throw new Error("Password doesn't match")
 
-        const { user_id } = row_result
+        const { user_id } = user
 
         const token = signToken(user_id);
 

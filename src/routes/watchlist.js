@@ -7,7 +7,7 @@ import {
     deleteContentFromList
 } from "../controllers/watchlistController.js"
 
-import { authenticate, hasRole } from "passport";
+import { authenticate, hasRole } from "../middleware/auth.js";
 
 const router = Router()
 

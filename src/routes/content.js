@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router()
 
-import { authenticate, hasRole } from "passport";
+import { authenticate, hasRole } from "../middleware/auth.js";
 
 import {
     getContentById,
@@ -21,8 +21,7 @@ router.get("/:content_id", getContentById)
 router.get("/", authenticate, searchContent)
 
 //Obtiene el titulo
-//Auto-detectar el scrapper a usar
-//body: { url: "https://" }
+//Auto-detecta el scrapper a usar
 router.get("/title", authenticate, getTitleByUrl)
 
 //Borra un contenido con su id
