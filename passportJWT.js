@@ -4,7 +4,7 @@ dotenv.config();
 import passport from "passport";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 
-import userService from "./src/services/userService";
+import userService from "./src/services/userService.js";
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt"),
