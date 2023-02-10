@@ -36,7 +36,7 @@ const findUserById = async (user_id) => {
 }
 
 const findUserByUsername = async (username) => {
-    const row_result = (await db.query("SELECT user_id FROM users WHERE username = $1::VARCHAR", [user_id])).rows[0]
+    const row_result = (await db.query("SELECT user_id FROM users WHERE username = $1::VARCHAR", [username])).rows[0]
 
     if (!row_result)
         throw new Error("Couldn't find a user with that username")
